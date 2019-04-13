@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>RZ Sandbox | Speech</title>
+</head>
+<body>
+
+<div id="result"></div>
+
+<script>
+
+window.onload = function(){
+
+	var recognition = new webkitSpeechRecognition();
+	recognition.lang = "pt-BR";
+
+	recognition.onresult = function(event){
+
+		console.log(event);
+
+	}
+
+	recognition.start();
+
+
+}
+	
+
+
+</script>
+</body>
+</html>
