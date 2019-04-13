@@ -14,9 +14,24 @@ window.onload = function(){
 	var recognition = new webkitSpeechRecognition();
 	recognition.lang = "pt-BR";
 
+
 	recognition.onresult = function(event){
 
-		console.log(event);
+		var busca = event.results[0][0].transcript.trim().toLowerCase();
+
+		if (busca.indexOf("buscar por") > -1) {
+
+			busca = busca.substring(11,busca.length);
+
+			let url = "https://www.google.com/search?q=" + busca;
+
+			window.open(url, "blank");
+
+		}else{
+			
+		}
+
+		document.getElementById('result').innerHTML = busca;
 
 	}
 
