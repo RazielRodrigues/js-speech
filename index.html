@@ -22,8 +22,12 @@ window.onload = function(){
 	recognition.onresult = function(event){
 
 		var busca = "";
+		for (var i = event.resultIndex; i < event.results.length; i++) {
 
-		var busca = event.results[0][0].transcript.trim().toLowerCase();
+			if (event.results[i].isFinal){
+				busca += event.results[i][0].transcript.trim().toLowerCase();
+			}
+		}
 
 		if (busca.indexOf("buscar por") > -1) {
 
