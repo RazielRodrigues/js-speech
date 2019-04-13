@@ -6,8 +6,9 @@
 <body>
 
 <div id="result"></div>
-
+<script src="jquery.js"></script>
 <script>
+
 
 window.onload = function(){
 
@@ -28,7 +29,16 @@ window.onload = function(){
 			window.open(url, "blank");
 
 		}else{
-			
+
+			busca = busca.split(" ").join("+")
+			let api_key = "IuFzLL4qAtOzICPwH4CRpTIygyE8y4ms";
+			let url = "http://api.giphy.com/v1/gifs/search?q="+busca+"&api_key="+api_key+"&limit=5";
+			var xhr = $.get(url);
+
+			xhr.done(function(result){
+				
+			})
+
 		}
 
 		document.getElementById('result').innerHTML = busca;
