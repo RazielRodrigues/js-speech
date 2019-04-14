@@ -1,76 +1,102 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>RZ Sandbox | Speech</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<img id="img_result" src=""></img>
+<html lang="pt-BR">
 
+<head>
+	<title>RZ Sandbox | Speech to text JavaScript</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" src="assets/style/style.css">
 </head>
+
 <body>
 
-<div id="result"></div>
-<script>
-
-
-window.onload = function(){
-
-	var recognition = new webkitSpeechRecognition();
-	recognition.lang = "pt-BR";
-	recognition.continuous = true;
-
-
-	recognition.onresult = function(event){
-
-		var busca = "";
-		for (var i = event.resultIndex; i < event.results.length; i++) {
-
-			if (event.results[i].isFinal){
-				busca += event.results[i][0].transcript.trim().toLowerCase();
-			}
-		}
-
-		if (busca.indexOf("buscar por") > -1) {
-
-			busca = busca.substring(11,busca.length);
-
-			let url = "https://www.google.com/search?q=" + busca;
-
-			window.open(url, "blank");
-
-		}else{
-
-			busca = busca.split(" ").join("+")
-			let api_key = "IuFzLL4qAtOzICPwH4CRpTIygyE8y4ms";
-			let url = "http://api.giphy.com/v1/gifs/search?q="+busca+"&api_key="+api_key+"&limit=5";
-			var xhr = $.get(url);
-
-			xhr.done(function(result){
-				console.log(result);
-				let qtd = result.data.length;
-
-				if (qtd > 0) {
-
-					let  numero = Math.floor(Math.random() * qtd);
-					let image_url = result.data[numero].images.downsized.url;
-					 document.getElementById("img_result").src = image_url;
-
-				}
-
-			});
-
-		}
-
-		document.getElementById('result').innerHTML = busca;
-
-	}
-
-	recognition.start();
-
-
-}
+<header>
 	
+<!-- Image and text -->
+<nav class="navbar navbar-dark bg-dark">
+  <a  href="index.html">
+    <img class="rounded-circle" src="assets/images/rz_photo.jpg" width="200" height="200" class="d-inline-block align-top" alt="RZ Sandbox | Speech to text JavaScript" title="RZ Sandbox | Speech to text JavaScript">
+    <h3 class="navbar-brand">
+    	    RZ Sandbox | Speech to text JavaScript
+
+    </h3>
+  </a>
+</nav>
+
+</header>
+
+<section>
+
+<div class="jumbotron jumbotron-fluid text-center">
+  <div class="container">
+    <h1 class="display-4">Speech to text using <img height="120" widght="120" src="https://cdn.svgporn.com/logos/javascript.svg" class="rounded">
+</h1>
+  
+    <p class="lead">Hello, this is a sample of how javascript can help we with voice recogntion and how we can use this to make a search in Google or any API, in this case I'm using <a href="giphy.com">giphy.com</a> API to return some images to we.
+    </p>
+
+    <div class="container">
+    	<ul class="list-group">
+		  <li class="list-group-item list-group-item-info">If you say "Buscar por or Search for + what you want to search"	the code return a Google search for you.</li>
+		  <li class="list-group-item list-group-item-info">When you say only a word the code return to you a GIF that's match with what you just say.</li>
+		</ul>
+    </div>  
+  </div>
+</div>
+
+</section>
+
+<main>
+
+<div class="container">
+
+<div class="row">
+
+    <div class="col-sm-6 px-md-120">
+		<div class="col px-md-5">
+		  	<div class="p-3 border bg-light">
+
+		  		<p id="result">What you said...</p>
+	
+		  	</div>
+		</div>
+    </div>
+
+    <div class="col-sm-6 px-md-120">
+		<div class="col px-md-5">
+		  	<div class="p-3 border bg-light">
+
+				<img id="img_result" src="">Waiting your GIF...</img>
+	
+		  	</div>
+		</div>
+    </div>
 
 
-</script>
+</div>
+
+</div>
+
+</main>
+
+<section>
+	<div class="jumbotron jumbotron-fluid text-center">
+	  <div class="container">
+	    <h1 class="display-4">Enjoy :)</h1>
+	  </div>
+	</div>
+</section>
+
+<footer class="footer mx-auto py-3 bg-dark">
+  <div class="container">
+    <p class="lead">Meet me don't be shy...</p>
+  </div>
+</footer>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="assets/js/Speech.js"></script>
 </body>
 </html>
