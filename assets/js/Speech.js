@@ -21,13 +21,13 @@ window.onload = function(){
 
 			let url = "https://www.google.com/search?q=" + busca;
 
-			window.open(url, "blank");
+			window.open(url);
 
 		}else{
 
 			busca = busca.split(" ").join("+")
 			let api_key = "IuFzLL4qAtOzICPwH4CRpTIygyE8y4ms";
-			let url = "http://api.giphy.com/v1/gifs/search?q="+busca+"&api_key="+api_key+"&limit=5";
+			let url = "https://api.giphy.com/v1/gifs/search?q="+busca+"&api_key="+api_key+"&limit=5";
 			var xhr = $.get(url);
 
 			xhr.done(function(result){
